@@ -1,18 +1,18 @@
 NAME = philosophers
 
-SRCS = thread.c
+SRCS = main.c
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra -g -lpthread
+CFLAGS = -Wall -Werror -Wextra -g #-lpthread
 
 BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
-ANSWER ?= $(shell bash -c 'read -p "Is OK ? " answer; echo $$answer')
+PATH_SUBMODULE ?= $(shell bash -c 'read -p "Adress of the submodule: " path_submodule; echo $$path_submodule')
+NAME_SUBMODULE ?= $(shell bash -c 'read -p "Name of the submodule: " name_submodule; echo $$name_submodule')
 
 all: $(NAME)
 
-$(NAME): sub $(OBJS)
-	# @$(MAKE) -C ./Libft
+$(NAME): $(OBJS)
 	@gcc $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
@@ -25,7 +25,6 @@ fclean: clean
 re: fclean all
 
 add:
-	@$(MAKE) -C Libft add
 	@git add *.c *.h Makefile
 	@git status
 
@@ -39,10 +38,23 @@ update:
 sub:
 	@git submodule update --init --recursive
 
+add_sub:
+	git submodule add $(PATH_SUBMODULE)
+
+del_sub:
+	vim .gitmodules
+	git add .gitmodules
+	vim .git/config
+	git rm --cached $(NAME_SUBMODULE)
+	rm -rf .git/modules/$(NAME_SUBMODULE)
+	git commit -m "Removed submodule"
+	rm -rf $(NAME_SUBMODULE)
+
+
+	
 init:
 	git init
 	git remote add origin https://github.com/Steven1659139/Philosophers.git
-	git submodule add https://github.com/Steven1659139/Libft.git
 
 stat: add
 	git branch
@@ -50,7 +62,6 @@ stat: add
 com: stat
 		git commit -m $(COMMIT)
 p: com
-	@$(MAKE) -C Libft push
 	git push origin $(BRANCH)
 merge:
 	git checkout master
