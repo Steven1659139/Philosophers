@@ -25,7 +25,7 @@ fclean: clean
 re: fclean all
 
 add:
-	@git add *.c *.h Makefile
+	@git add *.c *.h Makefile to_do.txt
 	@git status
 
 norm:
