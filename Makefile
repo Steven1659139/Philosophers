@@ -1,6 +1,6 @@
 NAME = philosophers
 
-SRCS = main.c
+SRCS = main.c ft_isdigit.c state.c
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -g #-lpthread
@@ -16,7 +16,6 @@ $(NAME): $(OBJS)
 	@gcc $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	@$(MAKE) -C  Libft fclean
 	@rm -f $(OBJS)
 
 fclean: clean
@@ -25,7 +24,7 @@ fclean: clean
 re: fclean all
 
 add:
-	@git add *.c *.h Makefile to_do.txt
+	@git add *.c *.h Makefile TODO.txt
 	@git status
 
 norm:
