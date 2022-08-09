@@ -1,9 +1,9 @@
 
 - parsing
 	- variable
-		[] initialiser le nombre de philo et de fourchette
-		[] leur associer un chiffre
-		[] double liste de philo circulaire
+		[X] initialiser le nombre de philo et de fourchette
+		[X] leur associer un chiffre
+		[X] double liste de philo circulaire
 		[X] initialiser time_to_die
 		[X] initialiser time_to_eat
 		[X] initialiser time_to_sleep
@@ -13,22 +13,23 @@
 		[X]	vérifier les lettres
 
 - changement d'état
-	[] timestamp_in_ms X has taken a fork
+	[X] timestamp_in_ms X has taken a fork
 	[] timestamp_in_ms X is eating
-	[] timestamp_in_ms X is sleeping
-	[] timestamp_in_ms X is thinking
+	[X] timestamp_in_ms X is sleeping
+	[X] timestamp_in_ms X is thinking
 	[] timestamp_in_ms X died
 
-[] un thread par philo
-[] une fourchette a gauche de chaque philo
+[X] un thread par philo
+[X] une fourchette a gauche de chaque philo
 
 structure philo
-	[] mutex
-	[] numéro philo
+	[X] mutex
+	[X] numéro philo
 	[] 
 
 [] créer timer
 
-
+- philo
+	[X] while action
 
 

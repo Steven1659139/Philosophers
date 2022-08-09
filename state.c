@@ -34,14 +34,24 @@ void	is_sleeping(t_philo *philo)
 	usleep(philo->info->time_to_sleep * 1000);
 }
 
-// void	eating(t_philo *philo)
-// {
+void	eating(t_philo *philo)
+{
+	long long	ms;
 
-
-
-
-
-// }
+	pthread_mutex_lock(&philo->state_mutex);
+	gettimeofday(&philo->last_meal, NULL);
+	ms = convert_to_ms(philo->last_meal) - convert_to_ms(philo->info->creat_time);
+	pthread_mutex_lock(&philo->info->action_mutex);
+	philo_message(philo, "is eating");
+	philo->nb_eat += 1;
+	if (philo->nb_eat == philo->info->nb_time_each_philo_must_eat)
+		philo->info->nb_philo_finish_eat += 1;
+	pthread_mutex_unlock(&philo->info->action_mutex);
+	usleep(philo->info->time_to_eat * 1000);
+	pthread_mutex_unlock(philo->left);
+	pthread_mutex_unlock(philo->right);
+	pthread_mutex_unlock(&philo->state_mutex);
+}
 
 void	pick_fork(t_philo *philo)
 {
@@ -57,17 +67,22 @@ void	thinking(t_philo *philo)
 {
 	// printf("philo %d is thinking\n", philo->philo_number);
 	philo_message(philo, "is_thinking");
-
-	usleep(philo->info->time_to_sleep * 1000);
 }
 
-void	*do_philosopher_thing(void	*philo)
+void	*do_philosopher_thing(void	*philo_void)
 {
-	pick_fork(philo);
-	is_sleeping(philo);
-	thinking(philo);
+	t_philo *philo;
+
+	philo = philo_void;
+
+	philo->info->end = 0;
+
+	while (!philo->info->end)
+	{
+		pick_fork(philo);
+		eating(philo);
+		is_sleeping(philo);
+		thinking(philo);
+	}
 	return (NULL);
-
-
-
 }
