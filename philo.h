@@ -27,8 +27,10 @@ typedef struct s_info
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nb_time_each_philo_must_eat;
+	int	end;
 	t_philo		*philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	action_mutex;
 	struct timeval creat_time;
 }					t_info;
 
@@ -36,7 +38,7 @@ typedef struct s_info
 
 int	ft_isdigit(int c);
 int	is_pos_digit(char **argv);
-void	*is_sleeping(t_philo *philo);
+void	is_sleeping(t_philo *philo);
 void	*do_philosopher_thing(void	*philo);
 
 

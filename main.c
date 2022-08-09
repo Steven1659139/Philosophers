@@ -35,7 +35,7 @@ int	is_pos_digit(char **argv)
 	return (1);
 }
 
-void	create_philo(t_info *info)
+void	corrupt_the_youth(t_info *info)
 {
 	// pthread_t	thread;
 	int			i;
@@ -57,6 +57,7 @@ void	init_philo(t_info *info)
 
 	info->philos = malloc(sizeof(t_philo) * info->nb_philo);
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->nb_philo);
+	pthread_mutex_init(&info->action_mutex, NULL);
 
 	if (!info->philos || !info->forks)
 		printf("malloc failed\n");
@@ -71,16 +72,18 @@ void	init_philo(t_info *info)
 		if (i == 1)
 		{
 			info->philos[i].left = &info->forks[info->nb_philo];
-			printf("F%d ", info->nb_philo);
+			// printf("F%d ", info->nb_philo);
 			
 		}
 		else
 		{
 
 			info->philos[i].left = &info->forks[i - 1];
-			printf("F%d ", i - 1);
+			// printf("F%d ", i - 1);
 		}
-		printf("P%d ", info->philos[i].philo_number);
+		// printf("P%d ", info->philos[i].philo_number);
+		info->philos[i].right = &info->forks[i];
+		info->philos[i].info = info;
 		i++;
 	}
 
@@ -107,7 +110,7 @@ int main(int argc, char **argv)
 	is_pos_digit(argv);
 	set_info(info, argv);
 	init_philo(info);
-	// create_philo(info);
+	corrupt_the_youth(info);
 	// printf("nb_philo = %d\ntime_to_die = %d\ninfo->time_to_eat = %d\ninfo->time_to_sleep = %d\ninfo->nb_time_each_philo_must_eat = %d\n", info->nb_philo, info->time_to_die, info->time_to_eat, info->time_to_sleep, info->nb_time_each_philo_must_eat);
 
 
