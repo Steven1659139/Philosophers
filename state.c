@@ -21,7 +21,7 @@ void	philo_message(t_philo *philo, char *str)
 	ms = convert_to_ms(now) - convert_to_ms(philo->info->creat_time);
 
 	if (!philo->info->end)
-		printf("%lld philo %d %s\n", ms, philo->philo_number, str);
+		printf("%lld\t%d\t %s\n", ms, philo->philo_number, str);
 
 	pthread_mutex_unlock(&philo->info->action_mutex);
 }
@@ -42,23 +42,25 @@ void	eating(t_philo *philo)
 	gettimeofday(&philo->last_meal, NULL);
 	ms = convert_to_ms(philo->last_meal) - convert_to_ms(philo->info->creat_time);
 	pthread_mutex_lock(&philo->info->action_mutex);
-	philo_message(philo, "is eating");
+	if (!philo->info->end)
+		printf("%lld\t%d\t %s\n", ms, philo->philo_number, "is eating");
+		// philo_message(philo, "is eating");
 	philo->nb_eat += 1;
 	if (philo->nb_eat == philo->info->nb_time_each_philo_must_eat)
 		philo->info->nb_philo_finish_eat += 1;
 	pthread_mutex_unlock(&philo->info->action_mutex);
 	usleep(philo->info->time_to_eat * 1000);
-	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(philo->right);
+	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(&philo->state_mutex);
 }
 
 void	pick_fork(t_philo *philo)
 {
-	pthread_mutex_lock(philo->left);
+	pthread_mutex_lock(philo->right);
 	// printf("philo %d taken a fork\n", philo->philo_number);
 	philo_message(philo, "taken a fork");
-	pthread_mutex_lock(philo->right);
+	pthread_mutex_lock(philo->left);
 	philo_message(philo, "taken a fork");
 	// printf("philo %d taken a fork\n", philo->philo_number);
 }
@@ -75,14 +77,20 @@ void	*do_philosopher_thing(void	*philo_void)
 
 	philo = philo_void;
 
-	philo->info->end = 0;
+	// philo->info->end = 0;
+
+	if (philo->philo_number % 2 == 0)
+		usleep(philo->info->time_to_eat * 1000);
 
 	while (!philo->info->end)
 	{
+		// printf("before taking a fork\n");
 		pick_fork(philo);
 		eating(philo);
 		is_sleeping(philo);
 		thinking(philo);
+		printf("end routine\n");
 	}
+	printf("philo end\n");
 	return (NULL);
 }
