@@ -32,4 +32,6 @@ structure philo
 - philo
 	[X] while action
 
+TODO: [] fin lorsque number_of_times_each_philosopher_must_eat et atteint
 
+FIXME: [] mort lorsqu'il n'y à qu'un philo 
