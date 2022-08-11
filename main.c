@@ -148,8 +148,6 @@ void	close_philo(t_info *info)
 	while (i < info->nb_philo)
 		pthread_mutex_destroy(&info->forks[i++]);
 	free(info->forks);
-
-
 }
 
 

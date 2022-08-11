@@ -57,10 +57,15 @@ void	eating(t_philo *philo)
 
 void	pick_fork(t_philo *philo)
 {
-	pthread_mutex_lock(philo->right);
+	pthread_mutex_lock(philo->left);
 	// printf("philo %d taken a fork\n", philo->philo_number);
 	philo_message(philo, "taken a fork");
-	pthread_mutex_lock(philo->left);
+	if (philo->info->nb_philo == 1)
+	{
+		usleep(philo->info->time_to_die * 1000);
+		exit(0);
+	}	
+	pthread_mutex_lock(philo->right);
 	philo_message(philo, "taken a fork");
 	// printf("philo %d taken a fork\n", philo->philo_number);
 }
