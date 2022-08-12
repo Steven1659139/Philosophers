@@ -1,12 +1,13 @@
 #include "philo.h"
 
-long long	convert_to_ms()
+long long	convert_to_ms(struct timeval time)
 {
-	struct timeval now;
+	long long ms;
 
-	gettimeofday(&now);
+	ms = time.tv_sec * 1000;
+	ms += time.tv_usec / 1000;
 
-	return((now.tv_sec * 1000) + (now.tv_usec / 1000));
+	return(ms);
 }
 
 void	philo_message(t_philo *philo, char *str)

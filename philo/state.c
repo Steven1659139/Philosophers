@@ -31,7 +31,7 @@ void	is_sleeping(t_philo *philo)
 {
 	// printf("philo %d is sleeping\n", philo->philo_number);
 	philo_message(philo, "is sleeping");
-	morphee(philo->info, philo->info->time_to_sleep * 1000);
+	morphee(philo->info, philo->info->time_to_sleep);
 
 	// usleep(philo->info->time_to_sleep * 1000);
 }
@@ -51,7 +51,7 @@ void	eating(t_philo *philo)
 	if (philo->nb_eat == philo->info->nb_time_each_philo_must_eat)
 		philo->info->nb_philo_finish_eat += 1;
 	pthread_mutex_unlock(&philo->info->action_mutex);
-	morphee(philo->info, philo->info->time_to_eat * 1000);
+	morphee(philo->info, philo->info->time_to_eat);
 	// usleep(philo->info->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->right);
 	pthread_mutex_unlock(philo->left);
@@ -66,7 +66,7 @@ void	pick_fork(t_philo *philo)
 	philo_message(philo, "taken a fork");
 	if (philo->info->nb_philo == 1)
 	{
-		morphee(philo->info, philo->info->time_to_die * 1000);
+		morphee(philo->info, philo->info->time_to_die);
 		// usleep(philo->info->time_to_die * 1000);
 		exit(0);
 	}	
@@ -90,8 +90,8 @@ void	*do_philosopher_thing(void	*philo_void)
 	// philo->info->end = 0;
 
 	if (philo->philo_number % 2 == 0)
-		// usleep(philo->info->time_to_eat * 1000);
-		morphee(philo->info, philo->info->time_to_eat * 1000);
+		usleep(philo->info->time_to_eat * 1000);
+		// morphee(philo->info, philo->info->time_to_eat);
 
 	while (!philo->info->end)
 	{

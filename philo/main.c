@@ -162,16 +162,16 @@ void	morphee(t_info *info, long long time_to_wait)
 	long long	live_la;
 	long long dif;
 
-
-	gettimeofday(&now, NULL);
-	live_la= convert_to_ms(now);
-
 	while(1)
 	{
-		dif = convert_to_ms(info->creat_time) - live_la;
+		gettimeofday(&now, NULL);
+
+		live_la = convert_to_ms(now);
+		dif = live_la - convert_to_ms(info->creat_time);
+		// printf("dif = %lld time = %lld\n", dif, time_to_wait);
 		if (dif >= time_to_wait)
 			break ;
-		usleep(1);
+		usleep(50);
 	}
 }
 
