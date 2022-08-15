@@ -156,21 +156,24 @@ void	init_philo(t_info *info)
 // 	free(info);
 // }
 
-void	morphee(t_info *info, long long time_to_wait)
+void	morphee(t_philo *philo, long long time_to_wait)
 {
 	struct timeval now;
 	long long	live_la;
 	long long dif;
 
+	// printf("time_to_wait = %lld\n", time_to_wait);
 	while(1)
 	{
 		gettimeofday(&now, NULL);
-
 		live_la = convert_to_ms(now);
-		dif = live_la - convert_to_ms(info->creat_time);
+
+		dif = live_la - convert_to_ms(philo->last_meal);
 		// printf("dif = %lld time = %lld\n", dif, time_to_wait);
 		if (dif >= time_to_wait)
+		{
 			break ;
+		}
 		usleep(50);
 	}
 }

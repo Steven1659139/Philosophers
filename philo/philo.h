@@ -29,6 +29,7 @@ typedef struct s_info
 	int	nb_time_each_philo_must_eat;
 	int	end;
 	int	nb_philo_finish_eat;
+	pthread_mutex_t cant_touch_this;
 	t_philo		*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	action_mutex;
@@ -47,7 +48,7 @@ void	*charon(void *void_philo);
 void	*out_of_food(void *void_info);
 void	yo_its_wrong(char *str, t_info *info);
 long long	convert_to_ms(struct timeval time);
-void	morphee(t_info *info, long long time_to_wait);
+void	morphee(t_philo *philo, long long time_to_wait);
 long long	ft_atoll(const char *str);
 void	close_philo(t_info *info);
 
