@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = main.c ft_isdigit.c state.c end.c ft_yo_its_wrong.c utils.c print.c
+SRCS = main.c state.c end.c ft_yo_its_wrong.c utils.c print.c init.c
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -g #-lpthread

@@ -17,7 +17,7 @@
 	[] timestamp_in_ms X is eating
 	[X] timestamp_in_ms X is sleeping
 	[X] timestamp_in_ms X is thinking
-	[] timestamp_in_ms X died
+	[X] timestamp_in_ms X died
 
 [X] un thread par philo
 [X] une fourchette a gauche de chaque philo
@@ -25,13 +25,13 @@
 structure philo
 	[X] mutex
 	[X] numéro philo
-	[] 
+	[X] 
 
-[] créer timer
+[X] créer timer
 
 - philo
 	[X] while action
 
-TODO: [] fin lorsque number_of_times_each_philosopher_must_eat et atteint
+TODO: [X] fin lorsque number_of_times_each_philosopher_must_eat et atteint
 
 FIXME: [X] mort lorsqu'il n'y à qu'un philo 

@@ -1,4 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 11:09:47 by slavoie           #+#    #+#             */
+/*   Updated: 2022/08/22 11:09:48 by slavoie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
+
+int	ft_isdigit(int c)
+{
+	int	rtn;
+
+	rtn = (c <= '9' && c >= '0');
+	return (rtn);
+}
 
 int	is_pos_digit(char **argv)
 {
@@ -7,12 +27,12 @@ int	is_pos_digit(char **argv)
 
 	i = 1;
 	j = 0;
-	while(argv[i])
+	while (argv[i])
 	{
 		while (argv[i][j])
 		{
 			if (!ft_isdigit(argv[i][j]))
-				return(0);
+				return (0);
 			j++;
 		}
 		j = 0;
