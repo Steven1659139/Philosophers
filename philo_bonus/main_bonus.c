@@ -33,19 +33,29 @@ void	morphee(long long time_to_wait)
 	}
 }
 
+void	set_monitor(t_info	*info)
+{
+	pthread_t	thread;
+	if (info->nb_time_each_philo_must_eat)
+		pthread_create(&thread, NULL, out_of_food, &info);
+	pthread_create(&thread, NULL, charon, &info);
+}
+
 int	main(int argc, char **argv)
 {
-	t_info	*info;
+	t_info		*info;
 
 	info = malloc(sizeof(t_info));
-	info->end = 0;
 	if (argc != 5 && argc != 6)
 		yo_its_wrong("Mauvaise nombre d'argument.", info);
 	if (!is_pos_digit(argv))
 		yo_its_wrong("Les arguments doivent être des entiers positif.", info);
 	set_info(info, argv);
+	printf("set_info OK.\n");
 	init_philo(info);
+	printf("init philo OK.\n");
 	corrupt_the_youth(info);
-	close_philo(info);
+	set_monitor(info);
+	drink_cigue(info);
 	return (0);
 }

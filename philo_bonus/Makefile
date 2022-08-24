@@ -1,6 +1,6 @@
 NAME = philo_bonus
 
-SRCS = main.c state.c end.c ft_yo_its_wrong.c utils.c print.c init.c
+SRCS = main_bonus.c state_bonus.c end_bonus.c ft_yo_its_wrong.c utils_bonus.c print_bonus.c init_bonus.c ft_strjoin.c ft_itoa.c ft_calloc.c 
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -g #-lpthread

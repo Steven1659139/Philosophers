@@ -20,3 +20,15 @@ long long	convert_to_ms(struct timeval time)
 	ms += time.tv_usec / 1000;
 	return (ms);
 }
+
+void	philo_message(t_philo *philo, char *str)
+{
+	long long		ms;
+	struct timeval	now;
+
+	sem_wait(philo->info->action_sem);
+	gettimeofday(&now, NULL);
+	ms = convert_to_ms(now) - convert_to_ms(philo->info->creat_time);
+	printf("%lld\t%d\t %s\n", ms, philo->philo_number + 1, str);
+	sem_post(philo->info->action_sem);
+}
