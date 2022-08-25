@@ -16,6 +16,11 @@ void	pick_fork(t_philo *philo)
 {
 	sem_wait(philo->info->forks);
 	philo_message(philo, "taken a fork.");
+	if (philo->info->nb_philo == 1)
+	{
+		morphee(philo->info->time_to_die);
+		exit(0);
+	}
 	sem_wait(philo->info->forks);
 	philo_message(philo, "taken a fork.");
 }
@@ -48,16 +53,21 @@ void eating(t_philo *philo)
 void	do_philosopher_thing(void	*philo_void)
 {
 	t_philo	*philo;
+	pthread_t	thread;
 
 	philo = philo_void;
+
+	// printf("create charon\n");
+	pthread_create(&thread, NULL, charon, philo);
 	if (philo->philo_number % 2 == 0)
 		morphee(philo->info->time_to_eat);
-	while (1)
+	while (!philo->info->term)
 	{
 		pick_fork(philo);
 		eating(philo);
 		is_sleeping(philo);
 		thinking(philo);
+		// printf("philo out of routine\n");
 	}
 	exit(0);
 }

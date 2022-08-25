@@ -13,6 +13,7 @@
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
+# include <signal.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <pthread.h>
@@ -38,6 +39,7 @@ typedef struct s_info
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	int				nb_time_each_philo_must_eat;
+	int				term;
 	sem_t			*end;
 	sem_t			*nb_philo_finish_eat;
 	t_philo			*philos;
@@ -67,6 +69,7 @@ void		corrupt_the_youth(t_info *info);
 void		*charon(void *void_philo);
 void		*out_of_food(void *void_info);
 void	drink_cigue(t_info *info);
+void	*terminator_but_greek(void	*void_info);
 
 
 #endif

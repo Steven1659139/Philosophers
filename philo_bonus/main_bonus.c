@@ -37,8 +37,12 @@ void	set_monitor(t_info	*info)
 {
 	pthread_t	thread;
 	if (info->nb_time_each_philo_must_eat)
+	{
 		pthread_create(&thread, NULL, out_of_food, &info);
-	pthread_create(&thread, NULL, charon, &info);
+		pthread_detach(thread);
+	}
+	pthread_create(&thread, NULL, terminator_but_greek, &info);
+	pthread_detach(thread);
 }
 
 int	main(int argc, char **argv)
@@ -51,11 +55,15 @@ int	main(int argc, char **argv)
 	if (!is_pos_digit(argv))
 		yo_its_wrong("Les arguments doivent être des entiers positif.", info);
 	set_info(info, argv);
-	printf("set_info OK.\n");
+	// printf("set_info OK.\n");
 	init_philo(info);
-	printf("init philo OK.\n");
+	// printf("init philo OK.\n");
 	corrupt_the_youth(info);
 	set_monitor(info);
+	// printf("philo start\n");
+	// printf("set monitor\n");
 	drink_cigue(info);
+	// printf("drink cigue\n");
+
 	return (0);
 }
