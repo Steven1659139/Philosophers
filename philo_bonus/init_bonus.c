@@ -20,6 +20,7 @@ void	set_info(t_info *info, char **argv)
 	info->time_to_sleep = ft_atoll(argv[4]);
 	if (argv[5])
 		info->nb_time_each_philo_must_eat = ft_atoll(argv[5]);
+	printf("nb_philo = %d\ndie = %lld\neat = %lld\nsleep = %lld\n", info->nb_philo, info->time_to_die, info->time_to_eat, info->time_to_sleep );
 }
 
 sem_t	*sem_start(const char *name, unsigned int value)
@@ -40,17 +41,17 @@ void	init_philo(t_info *info)
 	char	*number;
 
 	i = 0;
-	// info->end = sem_open("end", O_CREAT | O_EXCL, 0644, 0);
 	info->end = sem_start("end", 0);
-	// info->action_sem = sem_open("action", O_CREAT | O_EXCL, 0644, 1);
 	info->action_sem = sem_start("action", 1);
-
-	// info->forks = sem_open("fork", O_CREAT | O_EXCL, 0644, info->nb_philo);
 	info->forks = sem_start("fork", info->nb_philo);
-
-	// info->nb_philo_finish_eat = sem_open("nb_meal", O_CREAT | O_EXCL, 0644, 0);
 	info->nb_philo_finish_eat = sem_start("nb_finish_eat", 0);
 
+	// info->end = sem_open("end", O_CREAT | O_EXCL, 0644, 0);
+	// info->action_sem = sem_open("action", O_CREAT | O_EXCL, 0644, 1);
+
+
+	// info->forks = sem_open("fork", O_CREAT | O_EXCL, 0644, info->nb_philo);
+	// info->nb_philo_finish_eat = sem_open("nb_meal", O_CREAT | O_EXCL, 0644, 0);
 	info->philos = malloc(sizeof(t_philo *) * info->nb_philo);
 	if (!info->philos)
 		yo_its_wrong("Error: Malloc failed.", info);

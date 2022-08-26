@@ -38,7 +38,7 @@ void	thinking(t_philo *philo)
 
 void eating(t_philo *philo)
 {
-	sem_wait(philo->info->action_sem);
+	sem_wait(philo->state_sem);
 	gettimeofday(&philo->last_meal, NULL);
 	philo_message(philo, "is eating.");
 	philo->nb_eat += 1;
