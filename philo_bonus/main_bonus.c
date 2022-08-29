@@ -38,10 +38,10 @@ void	set_monitor(t_info	*info)
 	pthread_t	thread;
 	if (info->nb_time_each_philo_must_eat)
 	{
-		pthread_create(&thread, NULL, out_of_food, &info);
+		pthread_create(&thread, NULL, out_of_food, info);
 		pthread_detach(thread);
 	}
-	pthread_create(&thread, NULL, terminator_but_greek, &info);
+	pthread_create(&thread, NULL, terminator_but_greek, info);
 	pthread_detach(thread);
 }
 
