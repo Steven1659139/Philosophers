@@ -34,6 +34,10 @@ void	ft_putstr_fd(char *s, int fd)
 void	yo_its_wrong(char *str, t_info *info)
 {
 	ft_putstr_fd(str, 2);
+	if (info->philos)
+		free(info->philos);
+
+
 	free(info);
 	exit(0);
 }

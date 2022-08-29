@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 {
 	t_info		*info;
 
-	info = malloc(sizeof(t_info));
+	info = ft_calloc(1, sizeof(t_info));
 	if (argc != 5 && argc != 6)
 		yo_its_wrong("Mauvaise nombre d'argument.", info);
 	if (!is_pos_digit(argv))

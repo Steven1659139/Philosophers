@@ -17,14 +17,14 @@ void	drink_cigue(t_info *info)
 	int	i;
 	int status;
 
-	i = 0;
+	i = -1;
 	// printf("waitpid %d\n", info->philos[i].pid);
-	while (i < info->nb_philo)
+	while (++i < info->nb_philo)
 	{
 		// sem_wait(info->end);
 		waitpid(info->philos[i].pid, &status, 0);
 		sem_close(info->philos[i].state_sem);
-		i++;
+		// i++;
 	}
 	free(info->philos);
 	sem_close(info->action_sem);
@@ -57,7 +57,10 @@ void	*terminator_but_greek(void	*void_info)
 	sem_wait(info->end);
 	// printf("go kill some philosopher\n");
 	while (i < info->nb_philo)
+	{
+		printf("pid before kill %d\n", info->philos[i].pid);
 		kill(info->philos[i++].pid, SIGTERM);
+	}
 	return (NULL);
 }
 
