@@ -34,10 +34,10 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-	int				nb_philo;
-	long long		time_to_die;
-	long long		time_to_eat;
-	long long		time_to_sleep;
+	int			nb_philo;
+	int	    time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
 	int				nb_time_each_philo_must_eat;
 	int				term;
 	sem_t			*end;

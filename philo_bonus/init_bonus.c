@@ -25,14 +25,14 @@ void	check_info(t_info *info, char **argv)
 
 void	set_info(t_info *info, char **argv)
 {
-	info->nb_philo = ft_atoll(argv[1]);
-	info->time_to_die = ft_atoll(argv[2]);
-	info->time_to_eat = ft_atoll(argv[3]);
-	info->time_to_sleep = ft_atoll(argv[4]);
+	info->nb_philo = atoi(argv[1]);
+	info->time_to_die = atoi(argv[2]);
+	info->time_to_eat = atoi(argv[3]);
+	info->time_to_sleep = atoi(argv[4]);
 	if (argv[5])
-		info->nb_time_each_philo_must_eat = ft_atoll(argv[5]);
+		info->nb_time_each_philo_must_eat = atoi(argv[5]);
 	check_info(info, argv);
-	printf("nb_philo = %d\ndie = %lld\neat = %lld\nsleep = %lld\n", info->nb_philo, info->time_to_die, info->time_to_eat, info->time_to_sleep );
+	// printf("nb_philo = %d\ndie = %lld\neat = %lld\nsleep = %lld\n", info->nb_philo, info->time_to_die, info->time_to_eat, info->time_to_sleep );
 }
 
 sem_t	*sem_start(const char *name, unsigned int value)
@@ -48,7 +48,7 @@ sem_t	*sem_start(const char *name, unsigned int value)
 
 void	init_philo(t_info *info)
 {
-	int	i;
+	long long	i;
 	char	*name;
 	char	*number;
 
@@ -92,7 +92,7 @@ void	corrupt_the_youth(t_info *info)
 	{
 		info->philos[i].last_meal = info->creat_time;
 		info->philos[i].pid = fork();
-		printf("pid = %d\n", info->philos[i].pid);
+		// printf("pid = %d\n", info->philos[i].pid);
 		if (info->philos[i].pid == 0)
 			return (do_philosopher_thing(&info->philos[i]));
 		else if (info->philos[i].pid < 0)
