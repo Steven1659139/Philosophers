@@ -26,10 +26,10 @@ void	philo_message(t_philo *philo, char *str)
 	long long		ms;
 	struct timeval	now;
 
-	pthread_mutex_lock(&philo->info->action_mutex);
+	pthread_mutex_lock(&philo->info->message_mutex);
 	gettimeofday(&now, NULL);
 	ms = convert_to_ms(now) - convert_to_ms(philo->info->creat_time);
 	if (!philo->info->end)
 		printf("%lld\t%d\t %s\n", ms, philo->philo_number, str);
-	pthread_mutex_unlock(&philo->info->action_mutex);
+	pthread_mutex_unlock(&philo->info->message_mutex);
 }

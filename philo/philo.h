@@ -25,7 +25,7 @@ typedef struct s_philo
 	int				philo_number;
 	int				nb_eat;
 	pthread_t		thread;
-	pthread_mutex_t	state_mutex;
+	pthread_mutex_t	dir_or_eat_mutex;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
 	struct s_info	*info;
@@ -43,7 +43,7 @@ typedef struct s_info
 	int				nb_philo_finish_eat;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	action_mutex;
+	pthread_mutex_t	message_mutex;
 	struct timeval	creat_time;
 }					t_info;
 

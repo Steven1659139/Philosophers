@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   state.c                                            :+:      :+:    :+:   */
+/*   dir_or_eat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -33,7 +33,7 @@ void	pick_fork(t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->state_mutex);
+	pthread_mutex_lock(&philo->dir_or_eat_mutex);
 	gettimeofday(&philo->last_meal, NULL);
 	if (!philo->info->end)
 		philo_message(philo, "is eating");
@@ -43,7 +43,7 @@ void	eating(t_philo *philo)
 	morphee(philo->info->time_to_eat);
 	pthread_mutex_unlock(philo->right);
 	pthread_mutex_unlock(philo->left);
-	pthread_mutex_unlock(&philo->state_mutex);
+	pthread_mutex_unlock(&philo->dir_or_eat_mutex);
 }
 
 void	thinking(t_philo *philo)

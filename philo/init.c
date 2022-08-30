@@ -51,7 +51,7 @@ void	init_philo(t_info *info)
 
 	info->philos = malloc(sizeof(t_philo) * info->nb_philo);
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->nb_philo);
-	pthread_mutex_init(&info->action_mutex, NULL);
+	pthread_mutex_init(&info->message_mutex, NULL);
 	if (!info->philos || !info->forks)
 		yo_its_wrong("malloc failed\n", info);
 	i = 0;
@@ -59,7 +59,7 @@ void	init_philo(t_info *info)
 	{
 		info->philos[i].philo_number = i + 1;
 		pthread_mutex_init(&info->forks[i], NULL);
-		pthread_mutex_init(&info->philos[i].state_mutex, NULL);
+		pthread_mutex_init(&info->philos[i].dir_or_eat_mutex, NULL);
 		if (i == 0)
 			info->philos[i].left = &info->forks[info->nb_philo - 1];
 		else
