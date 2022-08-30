@@ -15,22 +15,21 @@
 void	drink_cigue(t_info *info)
 {
 	int	i;
-	int status;
+	int	status;
 
-	i = -1;
-	// printf("waitpid %d\n", info->philos[i].pid);
-	while (++i < info->nb_philo)
+	i = 0;
+	while (i < info->nb_philo)
 	{
-		// sem_wait(info->end);
 		waitpid(info->philos[i].pid, &status, 0);
-		sem_close(info->philos[i].state_sem);
-		// i++;
+		sem_close(info->philos[i].die_or_eat_sem);
+		i++;
 	}
 	free(info->philos);
-	sem_close(info->action_sem);
+	sem_close(info->message_sem);
 	sem_close(info->end);
 	sem_close(info->forks);
 	sem_close(info->nb_philo_finish_eat);
+	free(info);
 }
 
 void	*out_of_food(void *void_info)
@@ -43,24 +42,19 @@ void	*out_of_food(void *void_info)
 	while (i++ < info->nb_philo)
 		sem_wait(info->nb_philo_finish_eat);
 	sem_post(info->end);
-	info->term = 1;
 	return (NULL);
 }
 
 void	*terminator_but_greek(void	*void_info)
 {
-	int	i;
+	int		i;
 	t_info	*info;
 
 	i = 0;
 	info = void_info;
 	sem_wait(info->end);
-	// printf("go kill some philosopher\n");
 	while (i < info->nb_philo)
-	{
-		// printf("pid before kill %d\n", info->philos[i].pid);
 		kill(info->philos[i++].pid, SIGTERM);
-	}
 	return (NULL);
 }
 
@@ -71,20 +65,20 @@ void	*charon(void *void_philo)
 	long long		ms;
 
 	philo = void_philo;
-	while (!philo->info->term)
+	while (1)
 	{
-		sem_wait(philo->state_sem);
+		sem_wait(philo->die_or_eat_sem);
+		sem_wait(philo->info->message_sem);
 		gettimeofday(&now, NULL);
 		ms = convert_to_ms(now) - convert_to_ms(philo->last_meal);
 		if (ms >= philo->info->time_to_die)
 		{
-			philo_message(philo, "die");
+			printf("%lld\t%d\t %s\n", ms, philo->philo_number + 1, "died");
 			sem_post(philo->info->end);
-			philo->info->term = 1;
-
 			return (NULL);
 		}
-		sem_post(philo->state_sem);
+		sem_post(philo->info->message_sem);
+		sem_post(philo->die_or_eat_sem);
 	}
 	return (NULL);
 }

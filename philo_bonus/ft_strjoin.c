@@ -31,7 +31,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dst_size)
 	return (index);
 }
 
-
 size_t	ft_strlcat(char *dst, const char *src, size_t dst_size)
 {
 	size_t	index;

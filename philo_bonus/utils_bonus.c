@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/30 13:17:08 by slavoie           #+#    #+#             */
+/*   Updated: 2022/08/30 13:17:10 by slavoie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
 
 int	ft_isdigit(int c)
@@ -29,7 +41,7 @@ int	is_pos_digit(char **argv)
 	return (1);
 }
 
-long long	ft_atoll(const char *str)
+int	ft_atoi(const char *str)
 {
 	long long	n;
 	int			negation;

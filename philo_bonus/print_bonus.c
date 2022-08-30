@@ -26,10 +26,9 @@ void	philo_message(t_philo *philo, char *str)
 	long long		ms;
 	struct timeval	now;
 
-	sem_wait(philo->info->action_sem);
+	sem_wait(philo->info->message_sem);
 	gettimeofday(&now, NULL);
 	ms = convert_to_ms(now) - convert_to_ms(philo->info->creat_time);
-	printf("philo number = %d\n", philo->philo_number);
 	printf("%lld\t%d\t %s\n", ms, philo->philo_number + 1, str);
-	sem_post(philo->info->action_sem);
+	sem_post(philo->info->message_sem);
 }
