@@ -22,8 +22,8 @@ int	check_info(t_info *info, char **argv)
 	if (argv[5])
 		if (info->nb_time_each_philo_must_eat < \
 		1)
-			return (yo_its_wrong("Les philosophes ne peuvent \
-			pas manger moins de 1 fois.\n", info));
+			return (yo_its_wrong \
+			("Les philosophes ne peuvent pas manger moins de 1 fois.\n", info));
 	return (1);
 }
 

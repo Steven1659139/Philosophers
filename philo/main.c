@@ -42,8 +42,8 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (yo_its_wrong("Mauvaise nombre d'argument.\n", info));
 	if (!is_pos_digit(argv))
-		return (yo_its_wrong("Les arguments doivent être des \
-		entiers positif.\n", info));
+		return (yo_its_wrong \
+		("Les arguments doivent être des entiers positif.\n", info));
 	if (!set_info(info, argv))
 		return (0);
 	init_philo(info);

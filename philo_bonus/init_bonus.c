@@ -20,10 +20,9 @@ void	check_info(t_info *info, char **argv)
 	|| info->time_to_sleep < 0)
 		yo_its_wrong("Aucun temps ne peut être inférieur à 0.\n", info);
 	if (argv[5])
-		if (info->nb_time_each_philo_must_eat < \
-		1)
-			yo_its_wrong("Les philosophes ne peuvent \
-			pas manger moins de 1 fois.\n", info);
+		if (info->nb_time_each_philo_must_eat < 1)
+			yo_its_wrong \
+			("Les philosophes ne peuvent pas manger moins de 1 fois.\n", info);
 }
 
 void	set_info(t_info *info, char **argv)
