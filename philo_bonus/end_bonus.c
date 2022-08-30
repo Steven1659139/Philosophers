@@ -28,7 +28,6 @@ void	drink_cigue(t_info *info)
 	sem_close(info->message_sem);
 	sem_close(info->end);
 	sem_close(info->forks);
-	sem_close(info->nb_philo_finish_eat);
 	free(info);
 }
 

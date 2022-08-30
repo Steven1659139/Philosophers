@@ -68,6 +68,6 @@ void		corrupt_the_youth(t_info *info);
 void		*charon(void *void_philo);
 void		*out_of_food(void *void_info);
 void		drink_cigue(t_info *info);
-void		*terminator_but_greek(void	*void_info);
+void		*ares(void	*void_info);
 
 #endif

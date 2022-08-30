@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dir_or_eat_bonus.c                                 :+:      :+:    :+:   */
+/*   state_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -38,7 +38,7 @@ void	eating(t_philo *philo)
 	philo_message(philo, "is eating.");
 	philo->nb_eat += 1;
 	if (philo->nb_eat == philo->info->nb_time_each_philo_must_eat)
-		philo->info->nb_philo_finish_eat += 1;
+		sem_post(philo->info->nb_philo_finish_eat);
 	morphee(philo->info->time_to_eat);
 	sem_post(philo->die_or_eat_sem);
 	sem_post(philo->info->forks);
@@ -52,6 +52,8 @@ void	do_philosopher_thing(void	*philo_void)
 
 	philo = philo_void;
 	pthread_create(&thread, NULL, charon, philo);
+	if (philo->philo_number % 2 == 0)
+		morphee(philo->info->time_to_eat);
 	while (1)
 	{
 		pick_fork(philo);
