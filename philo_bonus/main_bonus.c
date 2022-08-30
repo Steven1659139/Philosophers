@@ -42,7 +42,7 @@ void	set_monitor(t_info	*info)
 		pthread_create(&thread, NULL, out_of_food, info);
 		pthread_detach(thread);
 	}
-	pthread_create(&thread, NULL, terminator_but_greek, info);
+	pthread_create(&thread, NULL, ares, info);
 	pthread_detach(thread);
 }
 

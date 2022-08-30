@@ -41,7 +41,7 @@ int	is_pos_digit(char **argv)
 	return (1);
 }
 
-long long	ft_atoll(const char *str)
+int	ft_atoi(const char *str)
 {
 	long long	n;
 	int			negation;

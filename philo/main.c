@@ -29,7 +29,7 @@ void	morphee(long long time_to_wait)
 		dif = live_la - ms_start;
 		if (dif >= time_to_wait)
 			break ;
-		usleep(50);
+		usleep(1);
 	}
 }
 
@@ -40,10 +40,12 @@ int	main(int argc, char **argv)
 	info = malloc(sizeof(t_info));
 	info->end = 0;
 	if (argc != 5 && argc != 6)
-		yo_its_wrong("Mauvaise nombre d'argument.", info);
+		return (yo_its_wrong("Mauvaise nombre d'argument.\n", info));
 	if (!is_pos_digit(argv))
-		yo_its_wrong("Les arguments doivent être des entiers positif.", info);
-	set_info(info, argv);
+		return (yo_its_wrong("Les arguments doivent être des \
+		entiers positif.\n", info));
+	if (!set_info(info, argv))
+		return (0);
 	init_philo(info);
 	corrupt_the_youth(info);
 	close_philo(info);

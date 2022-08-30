@@ -45,7 +45,7 @@ void	*out_of_food(void *void_info)
 	return (NULL);
 }
 
-void	*terminator_but_greek(void	*void_info)
+void	*ares(void	*void_info)
 {
 	int		i;
 	t_info	*info;

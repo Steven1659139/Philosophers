@@ -31,9 +31,9 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, s, ft_strlen(s));
 }
 
-void	yo_its_wrong(char *str, t_info *info)
+int	yo_its_wrong(char *str, t_info *info)
 {
 	ft_putstr_fd(str, 2);
 	free(info);
-	exit(0);
+	return (0);
 }

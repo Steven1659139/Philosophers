@@ -3,7 +3,7 @@ NAME = philo_bonus
 SRCS = main_bonus.c state_bonus.c end_bonus.c ft_yo_its_wrong.c utils_bonus.c print_bonus.c init_bonus.c ft_strjoin.c ft_itoa.c ft_calloc.c 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra -g #-lpthread
+CFLAGS = -Wall -Werror -Wextra -g
 
 BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')

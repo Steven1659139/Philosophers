@@ -49,16 +49,16 @@ typedef struct s_info
 
 int			ft_isdigit(int c);
 int			is_pos_digit(char **argv);
-void		yo_its_wrong(char *str, t_info *info);
+int			yo_its_wrong(char *str, t_info *info);
 long long	convert_to_ms(struct timeval time);
 void		morphee(long long time_to_wait);
-long long	ft_atoll(const char *str);
+int			ft_atoi(const char *str);
 
 void		is_sleeping(t_philo *philo);
 void		*do_philosopher_thing(void	*philo);
 void		philo_message(t_philo *philo, char *str);
 
-void		set_info(t_info *info, char **argv);
+int			set_info(t_info *info, char **argv);
 void		init_philo(t_info *info);
 void		close_philo(t_info *info);
 void		corrupt_the_youth(t_info *info);

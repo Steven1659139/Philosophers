@@ -12,14 +12,30 @@
 
 #include "philo.h"
 
-void	set_info(t_info *info, char **argv)
+int	check_info(t_info *info, char **argv)
 {
-	info->nb_philo = ft_atoll(argv[1]);
-	info->time_to_die = ft_atoll(argv[2]);
-	info->time_to_eat = ft_atoll(argv[3]);
-	info->time_to_sleep = ft_atoll(argv[4]);
+	if (info->nb_philo < 1)
+		return (yo_its_wrong("Il doit y avoir au moins 1 philosophe.\n", info));
+	if (info->time_to_die < 0 || info->time_to_eat < 0 \
+	|| info->time_to_sleep < 0)
+		return (yo_its_wrong("Aucun temps ne peut être inférieur à 0.\n", info));
 	if (argv[5])
-		info->nb_time_each_philo_must_eat = ft_atoll(argv[5]);
+		if (info->nb_time_each_philo_must_eat < \
+		1)
+			return (yo_its_wrong("Les philosophes ne peuvent \
+			pas manger moins de 1 fois.\n", info));
+	return (1);
+}
+
+int	set_info(t_info *info, char **argv)
+{
+	info->nb_philo = ft_atoi(argv[1]);
+	info->time_to_die = ft_atoi(argv[2]);
+	info->time_to_eat = ft_atoi(argv[3]);
+	info->time_to_sleep = ft_atoi(argv[4]);
+	if (argv[5])
+		info->nb_time_each_philo_must_eat = ft_atoi(argv[5]);
+	return (check_info(info, argv));
 }
 
 void	corrupt_the_youth(t_info *info)

@@ -21,14 +21,14 @@ void	is_sleeping(t_philo *philo)
 void	pick_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
-	philo_message(philo, "taken left fork");
+	philo_message(philo, "has taken fork");
 	if (philo->info->nb_philo == 1)
 	{
 		morphee(philo->info->time_to_die);
 		exit(0);
 	}	
 	pthread_mutex_lock(philo->right);
-	philo_message(philo, "taken right fork");
+	philo_message(philo, "has taken fork");
 }
 
 void	eating(t_philo *philo)
