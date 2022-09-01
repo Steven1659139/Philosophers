@@ -23,6 +23,7 @@ void	*out_of_food(void *void_info)
 		if (info->nb_philo_finish_eat == info->nb_philo)
 			info->end += 1;
 		pthread_mutex_unlock(&info->message_mutex);
+		usleep(50);
 	}
 	return (NULL);
 }
@@ -36,15 +37,18 @@ void	*charon(void *void_philo)
 	philo = void_philo;
 	while (!philo->info->end)
 	{
-		pthread_mutex_lock(&philo->dir_or_eat_mutex);
+		pthread_mutex_lock(&philo->die_or_eat_mutex);
+		pthread_mutex_lock(&philo->info->message_mutex);
 		gettimeofday(&now, NULL);
 		ms = convert_to_ms(now) - convert_to_ms(philo->last_meal);
 		if (ms >= philo->info->time_to_die && philo->info->end == 0)
 		{
-			philo_message(philo, "died");
+			printf("%lld\t%d\t %s\n", convert_to_ms(now) - convert_to_ms(philo->info->creat_time), philo->philo_number, "died");
 			philo->info->end += 1;
 		}
-		pthread_mutex_unlock(&philo->dir_or_eat_mutex);
+		pthread_mutex_unlock(&philo->die_or_eat_mutex);
+		pthread_mutex_unlock(&philo->info->message_mutex);
+		usleep(50);
 	}
 	return (NULL);
 }
@@ -57,7 +61,7 @@ void	close_philo(t_info *info)
 	while (i < info->nb_philo)
 	{
 		pthread_join(info->philos[i].thread, NULL);
-		pthread_mutex_destroy(&info->philos[i++].dir_or_eat_mutex);
+		pthread_mutex_destroy(&info->philos[i++].die_or_eat_mutex);
 	}
 	free(info->philos);
 	i = 0;

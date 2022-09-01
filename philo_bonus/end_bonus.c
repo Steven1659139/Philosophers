@@ -72,12 +72,13 @@ void	*charon(void *void_philo)
 		ms = convert_to_ms(now) - convert_to_ms(philo->last_meal);
 		if (ms >= philo->info->time_to_die)
 		{
-			printf("%lld\t%d\t %s\n", ms, philo->philo_number + 1, "died");
+			printf("%lld\t%d\t %s\n", convert_to_ms(now) - convert_to_ms(philo->info->creat_time), philo->philo_number, "died");
 			sem_post(philo->info->end);
 			return (NULL);
 		}
 		sem_post(philo->info->message_sem);
 		sem_post(philo->die_or_eat_sem);
+		usleep(50);
 	}
 	return (NULL);
 }

@@ -29,7 +29,7 @@ void	morphee(long long time_to_wait)
 		dif = live_la - ms_start;
 		if (dif >= time_to_wait)
 			break ;
-		usleep(1);
+		usleep(50);
 	}
 }
 

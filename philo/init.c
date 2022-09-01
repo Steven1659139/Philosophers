@@ -29,6 +29,8 @@ int	check_info(t_info *info, char **argv)
 
 int	set_info(t_info *info, char **argv)
 {
+	info->end = 0;
+	info->nb_philo_finish_eat = 0;
 	info->nb_philo = ft_atoi(argv[1]);
 	info->time_to_die = ft_atoi(argv[2]);
 	info->time_to_eat = ft_atoi(argv[3]);
@@ -75,7 +77,7 @@ void	init_philo(t_info *info)
 	{
 		info->philos[i].philo_number = i + 1;
 		pthread_mutex_init(&info->forks[i], NULL);
-		pthread_mutex_init(&info->philos[i].dir_or_eat_mutex, NULL);
+		pthread_mutex_init(&info->philos[i].die_or_eat_mutex, NULL);
 		if (i == 0)
 			info->philos[i].left = &info->forks[info->nb_philo - 1];
 		else

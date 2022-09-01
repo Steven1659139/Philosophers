@@ -20,20 +20,23 @@ void	is_sleeping(t_philo *philo)
 
 void	pick_fork(t_philo *philo)
 {
+	//mutex
 	pthread_mutex_lock(philo->left);
 	philo_message(philo, "has taken fork");
 	if (philo->info->nb_philo == 1)
 	{
 		morphee(philo->info->time_to_die);
-		exit(0);
+		return ;
 	}	
 	pthread_mutex_lock(philo->right);
+	
 	philo_message(philo, "has taken fork");
+	// mutex
 }
 
 void	eating(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->dir_or_eat_mutex);
+	pthread_mutex_lock(&philo->die_or_eat_mutex);
 	gettimeofday(&philo->last_meal, NULL);
 	if (!philo->info->end)
 		philo_message(philo, "is eating");
@@ -43,7 +46,7 @@ void	eating(t_philo *philo)
 	morphee(philo->info->time_to_eat);
 	pthread_mutex_unlock(philo->right);
 	pthread_mutex_unlock(philo->left);
-	pthread_mutex_unlock(&philo->dir_or_eat_mutex);
+	pthread_mutex_unlock(&philo->die_or_eat_mutex);
 }
 
 void	thinking(t_philo *philo)
@@ -61,9 +64,12 @@ void	*do_philosopher_thing(void	*philo_void)
 	while (!philo->info->end)
 	{
 		pick_fork(philo);
-		eating(philo);
-		is_sleeping(philo);
-		thinking(philo);
+		if (philo->info->nb_philo != 1)
+		{
+			eating(philo);
+			is_sleeping(philo);
+			thinking(philo);
+		}
 	}
 	return (NULL);
 }

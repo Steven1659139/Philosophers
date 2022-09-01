@@ -25,7 +25,7 @@ typedef struct s_philo
 	int				philo_number;
 	int				nb_eat;
 	pthread_t		thread;
-	pthread_mutex_t	dir_or_eat_mutex;
+	pthread_mutex_t	die_or_eat_mutex;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
 	struct s_info	*info;
