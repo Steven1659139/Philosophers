@@ -29,7 +29,6 @@ void	pick_fork(t_philo *philo)
 		return ;
 	}
 	pthread_mutex_lock(philo->right);
-	
 	philo_message(philo, "has taken fork");
 	pthread_mutex_unlock(&philo->cue);
 }

@@ -29,7 +29,7 @@ typedef struct s_philo
 	pthread_mutex_t	die_or_eat_mutex;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
-	pthread_mutex_t cue;
+	pthread_mutex_t	cue;
 	struct s_info	*info;
 	struct timeval	last_meal;
 }					t_philo;
