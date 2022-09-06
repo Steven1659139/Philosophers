@@ -22,6 +22,7 @@
 # include <string.h>
 # include <semaphore.h>
 
+
 typedef struct s_philo
 {
 	int				philo_number;

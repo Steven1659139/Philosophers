@@ -1,7 +1,11 @@
 NAME = philo_bonus
 
 SRCS = main_bonus.c state_bonus.c end_bonus.c ft_yo_its_wrong.c utils_bonus.c print_bonus.c init_bonus.c ft_strjoin.c ft_itoa.c ft_calloc.c 
+CC = @gcc
+
 OBJS = $(SRCS:.c=.o)
+
+GREEN = \033[1;32m
 
 CFLAGS = -Wall -Werror -Wextra -g
 
@@ -13,9 +17,11 @@ NAME_SUBMODULE ?= $(shell bash -c 'read -p "Name of the submodule: " name_submod
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@gcc $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)Everything is top shape tiguidou 🐥"
 
 clean:
+	@echo "Cleaning 🌪 🔥🌊"
 	@rm -f $(OBJS)
 
 fclean: clean

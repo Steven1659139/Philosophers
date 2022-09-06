@@ -78,6 +78,7 @@ void	init_philo(t_info *info)
 		info->philos[i].philo_number = i + 1;
 		pthread_mutex_init(&info->forks[i], NULL);
 		pthread_mutex_init(&info->philos[i].die_or_eat_mutex, NULL);
+		pthread_mutex_init(&info->philos[i].cue, NULL);
 		if (i == 0)
 			info->philos[i].left = &info->forks[info->nb_philo - 1];
 		else

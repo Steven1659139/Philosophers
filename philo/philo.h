@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <string.h>
+# include <stdbool.h>
 
 typedef struct s_philo
 {
@@ -28,6 +29,7 @@ typedef struct s_philo
 	pthread_mutex_t	die_or_eat_mutex;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
+	pthread_mutex_t cue;
 	struct s_info	*info;
 	struct timeval	last_meal;
 }					t_philo;
@@ -39,7 +41,7 @@ typedef struct s_info
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	int				nb_time_each_philo_must_eat;
-	int				end;
+	bool			end;
 	int				nb_philo_finish_eat;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;

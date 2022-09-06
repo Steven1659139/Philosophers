@@ -20,18 +20,18 @@ void	is_sleeping(t_philo *philo)
 
 void	pick_fork(t_philo *philo)
 {
-	//mutex
+	pthread_mutex_lock(&philo->cue);
 	pthread_mutex_lock(philo->left);
 	philo_message(philo, "has taken fork");
 	if (philo->info->nb_philo == 1)
 	{
 		morphee(philo->info->time_to_die);
 		return ;
-	}	
+	}
 	pthread_mutex_lock(philo->right);
 	
 	philo_message(philo, "has taken fork");
-	// mutex
+	pthread_mutex_unlock(&philo->cue);
 }
 
 void	eating(t_philo *philo)
@@ -70,6 +70,8 @@ void	*do_philosopher_thing(void	*philo_void)
 			is_sleeping(philo);
 			thinking(philo);
 		}
+		else
+			break ;
 	}
 	return (NULL);
 }

@@ -5,6 +5,10 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -g #-lpthread
 
+CC = @gcc
+
+GREEN = \033[1;32m
+
 BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
 PATH_SUBMODULE ?= $(shell bash -c 'read -p "Adress of the submodule: " path_submodule; echo $$path_submodule')
@@ -13,9 +17,11 @@ NAME_SUBMODULE ?= $(shell bash -c 'read -p "Name of the submodule: " name_submod
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@gcc $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)Everything is top shape tiguidou 🐥"
 
 clean:
+	@echo "Cleaning 🌪 🔥🌊"
 	@rm -f $(OBJS)
 
 fclean: clean
