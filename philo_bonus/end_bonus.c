@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: slavoie <slavoie@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:31:29 by slavoie           #+#    #+#             */
-/*   Updated: 2022/08/22 12:31:30 by slavoie          ###   ########.fr       */
+/*   Updated: 2022/09/06 14:56:22 by slavoie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*charon(void *void_philo)
 			printf("%lld\t%d\t %s\n", convert_to_ms(now) - convert_to_ms \
 			(philo->info->creat_time), philo->philo_number + 1, "died");
 			sem_post(philo->info->end);
-			return (NULL);
+			return (NULL); 
 		}
 		sem_post(philo->info->message_sem);
 		sem_post(philo->die_or_eat_sem);

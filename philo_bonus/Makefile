@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: slavoie <slavoie@student.42quebec.com>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/06 14:56:36 by slavoie           #+#    #+#              #
+#    Updated: 2022/09/06 14:56:37 by slavoie          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philo_bonus
 
 SRCS = main_bonus.c state_bonus.c end_bonus.c ft_yo_its_wrong.c utils_bonus.c print_bonus.c init_bonus.c ft_strjoin.c ft_itoa.c ft_calloc.c 
