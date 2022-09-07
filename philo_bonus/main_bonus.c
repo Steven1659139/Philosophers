@@ -6,7 +6,7 @@
 /*   By: slavoie <slavoie@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:31:18 by slavoie           #+#    #+#             */
-/*   Updated: 2022/09/06 14:56:35 by slavoie          ###   ########.fr       */
+/*   Updated: 2022/09/07 12:03:15 by slavoie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	morphee(long long time_to_wait)
 		dif = live_la - ms_start;
 		if (dif >= time_to_wait)
 			break ;
-		usleep(1);
+		usleep(50);
 	}
 }
 

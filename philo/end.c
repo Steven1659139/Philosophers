@@ -6,7 +6,7 @@
 /*   By: slavoie <slavoie@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:09:53 by slavoie           #+#    #+#             */
-/*   Updated: 2022/09/06 14:55:49 by slavoie          ###   ########.fr       */
+/*   Updated: 2022/09/07 11:58:49 by slavoie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*charon(void *void_philo)
 		if (ms >= philo->info->time_to_die && philo->info->end == 0)
 		{
 			printf("%lld\t%d\t %s\n", convert_to_ms(now) - convert_to_ms \
-			(philo->info->creat_time), philo->philo_number + 1, "died");
+			(philo->info->creat_time), philo->philo_number, "died");
 			philo->info->end += 1;
 		}
 		pthread_mutex_unlock(&philo->die_or_eat_mutex);
