@@ -6,11 +6,12 @@ Philosophers est un projet de l'école 42. Le but est de résoudre le problème 
 
 Dans ce projet, nous avons un certain nombre de philosophes assis autour d'une table ronde, mangeant des spaghettis. Il y a un bol de spaghettis au milieu de la table et une fourchette entre chaque philosophe. Un philosophe a besoin de deux fourchettes pour manger, et ils doivent penser quand ils ne mangent pas.
 
-Notre programme simule ce scénario en créant un thread pour chaque philosophe. Chaque philosophe alterne entre penser, prendre des fourchettes, manger et déposer des fourchettes.
+Notre programme simule ce scénario en créant un thread pour chaque philosophe. Chaque philosophe alterne entre penser, prendre des fourchettes, manger et dormir.
 
 ## Bonus
 
 Pour le bonus, nous avons ajouté le support pour les sémaphores et nous avons également implémenté une protection contre la mort de deux philosophes en même temps.
+Dans ce modèle, toutes les fourchettes sont au centre de la table et tous les philosophes peuvent y accéder.
 
 ## Compilation
 
